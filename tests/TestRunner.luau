@@ -1,4 +1,4 @@
-local pkgRoot = game.ReplicatedStorage.Packages.Bufferize
+local pkgRoot = game.ReplicatedStorage.Packages.PriorityQueue
 local runCLI = require(game.ReplicatedStorage.DevPackages.Jest).runCLI
 
 local processServiceExists, ProcessService = pcall(function()
