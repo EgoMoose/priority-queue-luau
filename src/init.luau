@@ -9,7 +9,7 @@ PriorityQueueClass.ClassName = "PriorityQueue"
 export type PriorityQueue<T> = typeof(setmetatable(
 	{} :: {
 		heap: Heap.Heap,
-		valuesByPriority: { { T } },
+		elementsByPriority: { { T } },
 	},
 	PriorityQueueClass
 ))
@@ -20,42 +20,42 @@ local function createFromHeap<T>(heap: Heap.Heap)
 	local self = setmetatable({}, PriorityQueueClass) :: PriorityQueue<T>
 
 	self.heap = heap
-	self.valuesByPriority = {}
+	self.elementsByPriority = {}
 
 	return self
 end
 
 -- Public Methods
 
-function PriorityQueueClass.insert<T>(self: PriorityQueue<T>, priority: number, value: T)
+function PriorityQueueClass.insert<T>(self: PriorityQueue<T>, priority: number, element: T)
 	self.heap:insert(priority)
 
-	local values = self.valuesByPriority[priority]
-	if not values then
-		values = {}
-		self.valuesByPriority[priority] = values
+	local elements = self.elementsByPriority[priority]
+	if not elements then
+		elements = {}
+		self.elementsByPriority[priority] = elements
 	end
 
-	table.insert(values, value)
+	table.insert(elements, element)
 end
 
 function PriorityQueueClass.pop<T>(self: PriorityQueue<T>)
 	local priority = self.heap:pop()
 	if priority then
-		local values = self.valuesByPriority[priority]
-		local value = table.remove(values, 1)
-		if #values == 0 then
-			self.valuesByPriority[priority] = nil
+		local elements = self.elementsByPriority[priority]
+		local element = table.remove(elements, 1)
+		if #elements == 0 then
+			self.elementsByPriority[priority] = nil
 		end
-		return value
+		return element
 	end
 	return nil
 end
 
 function PriorityQueueClass.peek<T>(self: PriorityQueue<T>)
 	local priority = self.heap:peek()
-	local values = priority and self.valuesByPriority[priority]
-	return if values then values[1] else nil
+	local elements = priority and self.elementsByPriority[priority]
+	return if elements then elements[1] else nil
 end
 
 function PriorityQueueClass.isEmpty<T>(self: PriorityQueue<T>)

@@ -76,8 +76,8 @@ function HeapClass.clone(self: Heap)
 	return copy
 end
 
-function HeapClass.insert(self: Heap, item: number)
-	table.insert(self.heap, item)
+function HeapClass.insert(self: Heap, node: number)
+	table.insert(self.heap, node)
 	self.length = self.length + 1
 	siftDown(self, 1, self.length)
 end
@@ -85,10 +85,10 @@ end
 function HeapClass.pop(self: Heap)
 	if self.length > 0 then
 		self.heap[1], self.heap[self.length] = self.heap[self.length], self.heap[1]
-		local rootItem = table.remove(self.heap)
+		local rootNode = table.remove(self.heap)
 		self.length = self.length - 1
 		siftUp(self, 1)
-		return rootItem
+		return rootNode
 	end
 	return nil
 end
