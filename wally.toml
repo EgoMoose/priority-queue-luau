@@ -5,10 +5,9 @@ repository = "https://github.com/EgoMoose/priority-queue-luau"
 version = "0.1.0"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
-license = ""
+license = "MIT"
 exclude = ["**"]
 include = ["src", "src/**", "wally.toml", "wally.lock", "default.project.json", "LICENSE"]
-private = true
 
 [dev-dependencies]
 Jest = "jsdotlua/jest@3.10.0"
