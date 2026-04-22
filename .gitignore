@@ -1,0 +1,11 @@
+/ServerPackages
+/DevPackages
+/Packages
+/placefiles
+
+standalone.rbxm
+test-place.rbxl
+supported.csv
+
+sourcemap.json
+*.ds_store
